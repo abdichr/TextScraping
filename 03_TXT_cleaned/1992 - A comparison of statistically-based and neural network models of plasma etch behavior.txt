@@ -1,0 +1,218 @@
+{"page": 1, "text": "A COMPARISON OF STATISTICALLY-BASED  AND NEURAL NETWORK MODELS OF  PLASMA ETCH BEHAVIOR"}
+
+{"page": 1, "text": "Christopher D. Himmel, Byungwhan Kim, and Gary S. May  School of Electrical Engineering  Georgia Institute of Technology  Atlanta, GA 30332-0250"}
+
+{"page": 1, "text": "Abstract  Previously, models for semiconductor manufactur ing processes have been developed using first princi ples, statistical experimental design, and a combination  of the two. Due to the complexity of modem fabrica tion processes, these approaches have met with varying  degrees of success. Recently, a new adaptive learning  approach involving neural networks has been applied to  the modeling of polysilicon film growth by low pressure chemical vapor deposition [ 13. In this paper, a  neural network modeling methodology is applied to the  removal of polysilicon films by plasma etching. The  plasma etch process under investigation was previously  modeled using the empirical response surface approach.  However, in comparing the two neural methods with  the statistical technique, it has been determined that the  neural network models exhibit superior accuracy and  require fewer training experiments. In fact, the results  of this study indicate that the predictive capabilities of  the neural net models are superior to that of their sta tistical counterparts for the same experimental data."}
+
+{"page": 1, "text": "1.0 Introduction  Accurate and efficient modeling of semiconductor  fabrication processes is necessary for a variety of  manufacturing applications. Among these are recipe  generation and optimization [2], statistical process con trol 131, and equipment malfunction diagnosis [4]. In  recent years, the technique of ion-assisted plasma etch ing has become widely used in semiconductor manufac turing. Due to this increased popularity, considerable  effort has been expended in developing reliable methods  of process characterization for this complex physical  and chemical process.  Characterization is aimed at  modeling the response of process outputs to vadations  in input parameters with a very high degree of preci sion. Previously, such models have been developed  using a variety of approaches, including first principles  [5-61, statistical experimental design and response sur face methodology [7-81, and a combination of the two"}
+
+{"page": 1, "text": "Plasma modeling from a fundamental standpoint  has had limited success.  Current physically-based  models attempt to derive self-consistent solutions to  first-principle equations involving continuity, momen tum balance, and energy balance inside a high fre quency, high intensity electric field. This is accom plished by means of computationally expensive numeri-"}
+
+{"page": 1, "text": "cal simulation methods which typically produce distri bution profiles of electrons and ions within the plasma  sheath. Although simulation is useful for equipment  design and optimization, it is subject to many simplify ing assumptions, and the true connection between these  microscopic models and macroscopic parameters (such  as etch rate) has yet to be clearly distinguished.  Since the complexity of practical plasma processes  at the equipment level is presently ahead of theoretical  comprehension, other efforts have focused on empirical  approaches to plasma modeling involving Response  Surface Methods (RSM) [IO]. Models derived via  RSM accurately represent the behavior of a specific  piece of equipment under a wide range of etch recipes,  thus making them very useful for manufacturing pur poses. More recently, however, an adaptive learning  technique which utilizes neural networks and influence  diagrams in conjunction with statistical methods has  been applied to the modeling of polysilicon growth by  low-pressure chemical vapor deposition (LPCVD) [ 11.  In that study, the neural process models were shown to  exhibit less experimental error than their statistical  counterparts, even when created from less experimental  data.  In this paper, two different neural network model ing methodologies are applied to the removal of polysil icon films by plasma etching. In one case, a neural  modeling algorithm is implemented via a C program,  while in the second case, neural process models are  developed using the commercially available Brainmaker  software package [Ill. A recent RSM study focused  on modeling the etch characteristics of n+-doped  polysilicon in a CClfie/02 plasma [7]. Etch rate, uni formity, and selectivity to both silicon dioxide and pho toresist were modeled as a function of six input param eters: RF power, pressure, electrode spacing, and the  three gas flows. Etching took place in a Lam Research  Autoetch 490 single-wafer plasma system. In comparing  the RSM models derived from these experiments the  neural models, it is determined that the neural models  exhibit superior accuracy to the RSM models and  require fewer training experiments. In fact, the results  of this study indicate that the predictive capabilities of  the neural net models are superior to that of their sta tistical counterparts for the same experimental data."}
+
+{"page": 1, "text": "2.0 Experimental Apparatus and Technique  In the experiment described in [7], etching was per-"}
+
+{"page": 1, "text": "0-7803-0680-5/92  $3.00 01992 IEEE  124  1992 IEEVSEMI Int'l Semiconductor Manufacturing Science Symposium"}
+
+{"page": 2, "text": "formed on a test structure designed to facilitate the  simultaneous measurement of the etch rates of polysili con, SiO,, and photoresist. The patterns were fabri cated on 4-in diameter silicon wafers. Approximately  1.2pm of phosphorus-doped polysilicon was deposited  over 0 . 5 ~ of thermal SiO, by LPCVD. The thick  layer of oxide was grown to prevent etching through  the oxide by the less selective experimental recipes.  Oxide was grown in a steam ambient at 1000\u00b0C. One  micron of Kodak 820 photoresist was spun-on and  baked for 60 seconds at 120OC. The etching apparatus  consisted of a Lam Research Corporation Autoetch 490  single-wafer parallel-plate system operating at 13.56  MHz.  Film thickness measurements were performed on  five points per wafer using a Nanometrics Nanospec  AFT system and an Alphastep 200 Automatic Step  Profiler. Vertical etch rates were calculated by dividing  the difference between the preand post-etch thickness  by the etch time. Expressions for the selectivity of  etching poly with respect to oxide (Sox) and with  respect to resist (S,,,) and percent nonuniformity (U),  respectively, are given below:  R  s = p Rox  ox"}
+
+{"page": 2, "text": "RP  Sph =  D  -"}
+
+{"page": 2, "text": "IR, R,I  U = * 100  R,"}
+
+{"page": 2, "text": "where R, is the mean vertical poly etch rate over the  five points, R,,,  is the mean oxide etch rate, R,,, is the  mean resist etch rate, R,  is the poly etch rate at the  center of the wafer, and R,  is the mean poly etch rate  of the four points located about one inch from the edge."}
+
+{"page": 2, "text": "3.0 Experimental Design  The experiment was divided into two phases: an  initial variable screening [12] phase to determine the  most significant parameters, followed by a second phase  designed to obtain the statistical response models."}
+
+{"page": 2, "text": "3.1 Phase 1 Variable Screening"}
+
+{"page": 2, "text": "Table I: Range of Input Factors"}
+
+{"page": 2, "text": "Parameter  I  Range  I Units  RF Power (Rf)  I 300 400 I watts  Pressure (P)  Electrode Gap (G)"}
+
+{"page": 2, "text": "He Flow  CCl, Flow"}
+
+{"page": 2, "text": "0, Flow"}
+
+{"page": 2, "text": "200 300  1.2 1.8  100 150  50 200  10 20"}
+
+{"page": 2, "text": "mtorr  cm  sccm  sccm  sccm"}
+
+{"page": 2, "text": "The six input factors and their respective ranges of  variation are shown in Table I. A full factorial experi-"}
+
+{"page": 2, "text": "ment to determine all effects and interactions for six  factors would require 26, or 64 experimental runs. To  reduce the experimental budget, the effects of higher  order interactions were neglected and a fractional fac torial design requiring only 32 runs was performed.  Experimental runs were performed in two blocks of  16 trials each in such a way that no main effects or first  order interactions were confounded. Three center points  were added to the design to provide a check for model  nonlinearity. The experimental sequence was random ized in order to avoid biases due to equipment aging  during the experiment."}
+
+{"page": 2, "text": "3.2 Phase 2 RSM Modeling  Analysis of the first stage of the experiment  revealed significant nonlinearity in all responses, indi cating the necessity of quadratic models. None of the  input factors were found to be statistically insignificant.  Thus, none were omitted from the second phase. To  derive the RSM models, a second experiment which  employed a Central Composite Circumscribed (CCC)  Box-Wilson design was performed. In this design, the  2-level factorial \"box\" was enhanced by further repli cated experiments at the center as well as symmetrically  located \"star\" points [12]. A complete CCC design for  six factors requires a total of 91 runs. To reduce the  size of the experiment and combine it with the results  from the screening phase, a half replicate design was  again employed. The entire second phase required 18  additional runs. A graphic description of central com posite designs appears in Figure 1."}
+
+{"page": 2, "text": "0  0  ccc"}
+
+{"page": 2, "text": "*  X  *"}
+
+{"page": 2, "text": "i * :"}
+
+{"page": 2, "text": "i Factor i  i Settings"}
+
+{"page": 2, "text": "i  ~-CenterPoint  *.  0 Comer Point"}
+
+{"page": 2, "text": "Star Point"}
+
+{"page": 2, "text": "CCI  i  *  f  ' 00  * x *   0 0   *"}
+
+{"page": 2, "text": "Figure I Central composite experimental designs."}
+
+{"page": 2, "text": "Phase 2 of the experiment yielded quadratic models  which describe the interaction between input factors and  the four responses. Each model was derived by step wise regression [13]. Analysis of variance (ANOVA)  techniques supported both the validity and quality of fit  of each model [7]. The models appear below:"}
+
+{"page": 2, "text": "125  1992 IEEVSEMI Int'l Semiconductor Manufacturing Science Symposium"}
+
+{"page": 2, "text": "~   ~~  ~~~"}
+
+{"page": 3, "text": "R, = -245 4.24P + 11.ORf + O.742CC14  (4)  + 11.2He + 5236 + 35.90, 0.034P*He + 7.82P*G  + 0.085RPCC14 8.36RPG 0.132(CC14)2  + 0.059CC14*He 0.059He2 A /min"}
+
+{"page": 3, "text": "U = -1 1.5 0.0385P + 0.0937Rf  (5)  + O.71OCCl4 0.415He 8.9OG  (1 .77e-3)RfrCC14 + (1.38e-3)RPHe  (1 .40e-3)CC14*He + (7.98e-4)He2 [%I"}
+
+{"page": 3, "text": "So, = -13.1 + 0.097P + 0.04Rf 0.06CC14  (6)  0.059He + 0.0790, (2e-4)P*Rf  + (2.9e-4)P*CC14 (3e-4)P*He"}
+
+{"page": 3, "text": "S,, = 7.56 + 0.009P + 0.014Rf 0.022CC14  + 0.006He 2.596 0.09902  (5e-5)P*Rf + (1.3e-4)P*CC14 (7e-5)P*He  + (3.7e-4)P*O2 + (2.7e-5)Rf2 + (3.6e-5)RPHe  (5e-S)CCl4*He + 0.757G2"}
+
+{"page": 3, "text": "4.0 Process Modeling With Neural Networks  Neural networks have previously demonstrated the  capability of learning complex relationships between  groups of related parameters [1,14-161. Such learning  abilities are attributed to the fact that neural networks,  possessing many simple parallel processing units (called  neurons or neurodes), crudely resemble the architecture  of the human brain. These rudimentary processors are  interconnected in such a way that knowledge is stored  in the weight of the connections between them. Each  neuron contains the weighted sum of its inputs filtered  by a exponential \"squashing\" function, thereby endow ing neural networks with the ability to generalize with  an added degree of freedom not available in statistical  regression techniques.  In order to model complex manufacturing processes  such as the plasma etching example above, the quantita tive relationships which relate the six input parameters  are learned via the feed-forward error back-propagation  (FFEBP) algorithm. This algorithm has been shown to  be very effective in learning arbitrary nonlinear map pings between noisy sets of input and output vectors  [16]. Networks consist of one or more layers of neu rons which receive, process, and transmit critical infor mation regarding the relationships between the input  parameters and corresponding responses. FFEBP net works incorporate \"hidden\" layers of neurons which do  not interact with the outside world, but perform  classification and feature extraction tasks on information  provided by the input and output layers."}
+
+{"page": 3, "text": "4.1 Plasma Etch Modeling Strategy  The structure of a typical FFEBP network appears  in Figure 2. In the plasma etch application, the input  layer of neurons receives external information and  corresponds to the six adjustable input parameters. The  output layer transmits information to the outside world,  and thus corresponds to the process responses (etch  rate, uniformity, etc.). The number of hidden layer neu rons is varied to achieve maximum performance. A  neural network with a structure consisting of six input  neurons, six hidden neurons and four output neurons is  referred to as a \"6-6-4\" structure.  ? 2 B P P Input"}
+
+{"page": 3, "text": "Figure 2 FFEBP neural network showing input, hid den and output layers."}
+
+{"page": 3, "text": "In the FFEBP modeling algorithm, the network  begins with a random set of weights. An input vector  is then presented to the network and the output is CGICU lated using this initial weight matrix. Next, the calcu lated output is compared to the measured output data,  and the squared difference between these two vectors  determines the system error. The accumulated error for  all the input-output pairs is the Euclidean distance in  the weight space which the network attempts to minim ize. Minimization is accomplished via the gradient des cent approach, in which the system is adjusted in the  direction of decreasing error [15].  Increasing the  number of hidden neurons or hidden layers in the net work helps this minimization process to converge. It  has been shown that FFEBP networks can encode any  arbitrary input-output relationship with a maximum of  two hidden layers [15-161.  In this study, the above algorithm has been imple mented via a C program as well as by using the com mercially available Brainmaker software [ 1 13. In each  case, the network is trained on a subset of the available  experimental data which spans the ranges of interest  and subsequently tested on other remaining data. Train ing is assumed to be complete when all outputs are  within a previously defined tolerance of the training  data.  The C program employs a madaline architecture  with a sigmoidal activation function and no input bias  for forward propagation [17]. The program consists of"}
+
+{"page": 3, "text": "126  1992 IEEEiSEMl Int'l Semiconductor Manufacturing Science Symposium"}
+
+{"page": 4, "text": "three major portions: 1) the input module, which reads  in the structure of the network and the data to be  modeled; 2) a loop which performs the FFEBP algo rithm until acceptable error is achieved; and 3) an  evaluation module, which calculates the error of the  network from the test data. Brainmaker also utilizes  the FFEBP algorithm. One difference is that in Bruin maker, the error in the output of each neuron is allowed  to vary within a user-defined range known as the train ing tolerance. The use of a training tolerance speeds  network training, but causes a small trade-off in accu racy."}
+
+{"page": 4, "text": "5.0 Results  Both the neural and RSM process models predict  the measured responses of the plasma etch equipment  with an experimental error 6, which is the square root  of the residual sum-of-squares (S,) for each response.  S, is calculated as follows [ 121:"}
+
+{"page": 4, "text": "where n is the number of experiments, yi is the meas ured value of each response, and ii is the corresponding  model prediction. The experimental error for the RSM  models (oRSM),  also referred to as replication error, is  shown in Table I1 below. This error is due to the  inherent variability in the plasma etch equipment [7]."}
+
+{"page": 4, "text": "Table 11: RSM Model Experimental Error"}
+
+{"page": 4, "text": "Model"}
+
+{"page": 4, "text": "309.4 8, /min"}
+
+{"page": 4, "text": "0.91  I  Sph  I  0.26"}
+
+{"page": 4, "text": "5.1 Experimental Error (Full Experiment)  The RSM models described in $3.2 were con structed from a total of 53 experimental runs, 35 of  which took place in the screening phase of the experi ment. In order to compare the error of the neural etch  models to their RSM counterparts, neural networks  employing a 6-6-1 architecture were trained using the C  program for all 53 original data. Table ID compares  the experimental error of these networks (0\") to that  of the RSM models (oRSM  above). This comparison is  further enhanced by the scatterplots in Figures 3-6,  which depict the neural and RSM model predictions  versus actual measurements. In these figures, perfect  model predictions lie on the diagonal line, while scatter  in the data is indicative of experimental error.  For each of the four etch responses, the neural net works exhibited significantly superior accuracy. This  can be attributed to the fact that the RSM models were  based on the somewhat questionable apriori assumption  of quadratic behavior. That is, the RSM procedure  began by assuming that quadratic functions adequately  described the variation of the responses with the six"}
+
+{"page": 4, "text": "Table 111: Neural versus RSM Experimental Error"}
+
+{"page": 4, "text": "Model  % Improvement"}
+
+{"page": 4, "text": "98.18, Imin  4.1 [%]  62.8  67.8"}
+
+{"page": 4, "text": "inputs, and then fit coefficients to the four polynomial  response equations (4)-(7) using regression techniques.  However, the initial assumption of quadratic behavior is  rather arbitrary, and may not be valid. The neural  models, on the other hand, are not constrained to any  particular form. In fact, due to their use of the previ ously mentioned exponential squashing function, neural  networks are able to interpolate and generalize arbitrary  nonlinear relationships."}
+
+{"page": 4, "text": "Etch Rate Models vs. Actual  k m i nx 1000  6.00"}
+
+{"page": 4, "text": "2.50  x 1000  2.50 3.00 3.50 4.00  4.50 5.00 5.50 6.00"}
+
+{"page": 4, "text": "Figure 3 Predicted vs. measured etch rate."}
+
+{"page": 4, "text": "Nonuniformity Models vs Actual  [ % I 60.00  55.00  50.00  45.00  40.00  35.00  30.00  25.00  20.00  15.00  10.00  5.00  0.00  -5.00  % ] -10.00 0.00 10.00 20.00 30.00 40.00 50.00 60.00"}
+
+{"page": 4, "text": "Figure 4 Predicted vs. measured etch uniformity."}
+
+{"page": 4, "text": "127  1992 IEEE/SEMI Int'l Semiconductor Manufacturing Science Symposium"}
+
+{"page": 5, "text": "Oxide Selectivity Models vs. Actual"}
+
+{"page": 5, "text": "16.00  15.00  14.00  13.00  12.00  11 .oo  10.00  9.00  8.00  7.00  6.00  5.00  4.00  3.00  2.00  2.00 4.00  6.00 8.00 10.00 12.00 14.00 16.00"}
+
+{"page": 5, "text": "OR.,  0\"  401.5 8, /min  247.9 8, /min"}
+
+{"page": 5, "text": "Figure 5 Predicted vs. measured oxide selectivity."}
+
+{"page": 5, "text": "% Improvement"}
+
+{"page": 5, "text": "38.3%"}
+
+{"page": 5, "text": "Resist Selectivity Models vs. Actual"}
+
+{"page": 5, "text": "3  So,  S..,"}
+
+{"page": 5, "text": "6-8-12-1  267.6 8, /min  5-10-20-1  4.63 [%I  6-8-3-1  0.81  6-8-12-1  0.18"}
+
+{"page": 5, "text": "1 .oo  1.00 1.50 2.00 2.50 3.00 3.50 4.00 4.50"}
+
+{"page": 5, "text": "Figure 6 Predicted vs. measured resist selectivity."}
+
+{"page": 5, "text": "5.2 Predictive Capability (Reduced Experiment)  Due to the enhanced accuracy ,of the neural models,  they can be used to predict etch behavior more pre cisely. It was also hypothesized that the neural models  could exhibit this superior predictive capability with  even fewer training experiments than the 53 used to  derive the RSM models. In order to verify this  hypothesis, the neural network model for the polysilicon  etch rate was re-trained on the 35 runs corresponding to  the initial screening phase of the RSM experiment only.  Once trained, the network was subsequently used to  predict the etch rate for 12 additional wafers which  were not a part of the original experiment. Nine of  these 12 wafers had been etched using the standard  recipe of the Berkeley Microfabrication Laboratory,  while the remaining wafers were etched using a recipe  designed to optimize the four etch responses [7].  As shown in Table IV, the experimental error of  the new neural etch rate model for the 12 extra runs  was 38.3% less than the RSM predictions. This result"}
+
+{"page": 5, "text": "Etch Rate Model vs Actual"}
+
+{"page": 5, "text": "4500  E  h ."}
+
+{"page": 5, "text": "3000 Y  3000  3500  4OoO  4500  5000"}
+
+{"page": 5, "text": "Experimental ( A h i n )"}
+
+{"page": 5, "text": "Figure 7 Predicted vs. measured etch rate for \"addi tional\" wafers."}
+
+{"page": 5, "text": "5.3 Brainmaker Results  The above simulations were repeated using the  Brainmaker package. This software offers the advan tage of much faster runtime than the C program. While  the C program typically runs for several hours before  convergence is achieved, Brainmaker training usually  lasts on the order of minutes. As a result, many  different neural architectures were tested with Brain maker in an effort to determine the optimal architecture.  This search yielded models exhibiting the best perfor mance which possessed a variety of structures. The  experimental error for these models (bB) is compared  with the RSM error in Table V."}
+
+{"page": 5, "text": "Table V: Brainmaker vs RSM Experimental Error  I Model I Structure I  OB  I % Improvement ]"}
+
+{"page": 5, "text": "13.5  30.5  11.0  30.8"}
+
+{"page": 5, "text": "128  1992 IEEUSEMI Int'l Semiconductor Manufacturing Science Symposium"}
+
+{"page": 6, "text": "For the reduced RSM experiment, the predictive  capability of the Brainmaker model is not as impressive  as the C program, but is still superior to RSM. When  the Brainmaker etch rate model was re-trained on the  35 screening runs and tested on the same 12 additional  wafers as in $5.2, the experimental error of the new  Brainmaker etch rate model for those 12 runs was  329.2 6; Imin, which represents a 18.0% improvement  over the RSM result of 401.5 6; Imin for these wafers  (see Table VI). This implies that although Brainmaker  training is much faster, better accuracy may be obtained  from software customized to a particular application."}
+
+{"page": 6, "text": "ORsM  401.5 8, /min"}
+
+{"page": 6, "text": "Table VI: Etch Rate Error of 12 \"Additional\" Wafers"}
+
+{"page": 6, "text": "OB  % Improvement"}
+
+{"page": 6, "text": "329.2 8, /min  18.0%"}
+
+{"page": 6, "text": "6.0 Conclusion"}
+
+{"page": 6, "text": "A neural network modeling technique has been  applied to the highly complex process of plasma etch ing. For a polysilicon etch in a CCl&Ie/O, plasma, the  etch rate, uniformity, and selectivity to both silicon  dioxide and photoresist were modeled as a function of  RF power, pressure, electrode spacing, and the three gas  flows. Neural process models were subsequently com pared to models derived by Response Surface Metho dology (RSM) for the same data. It was demonstrated  that the neural models possess significantly superior  performance. Furthermore, the derivation of accurate  neural models was shown to require fewer training  experiments. As a result, neural network modeling  promises to be a faster, more efficient and less expen sive method of process characterization and the RSM  approach in the future."}
+
+{"page": 6, "text": "Acknowledgement  We are grateful to the staff of the UC-Berkeley  Microfabrication Laboratory for aid in performing the  original experimentation."}
+
+{"page": 6, "text": "References"}
+
+{"page": 6, "text": "F. Nadi, A. Agogino, and D. Hodges, \"Use of  Influence Diagrams and Neural Networks in Model ing Semiconductor Manufacturing Processes,\" ZEEE  Trans. Semi. Manufac., vol. 4, no. 1, Feb., 1991."}
+
+{"page": 6, "text": "K. Lin, \"Modeling and Characterization of Sem iconductor Manufacturing Equipment: An Applica tion to LPCVD Reactors,\" UC-Berkeley ERL  Memo. No. UCBIERL. M90144, May, 1990."}
+
+{"page": 6, "text": "H. Guo, C. Spanos, and A. Miller, \"Real Time Sta tistical Process Control for Plasma Etching,\"  ISMSS, May, 1991."}
+
+{"page": 6, "text": "141 G. May and C. Spanos, \"Automated Malfunction  Diagnosis of Semiconductor Fabrication Equip ment: A Plasma Etch Application,\" submitted to  IEEE Trans. Semi. Manufac., June, 1991."}
+
+{"page": 6, "text": "[ 51 A. Gerodolle and J. Pelletier, \"Two-Dimensional  Implications of a Purely Reactive Model for Plasma  Etching,\" IEEE Trans. Elec. Dev., vol. 38, no. 9,  Sept., 1991."}
+
+{"page": 6, "text": "[6] A. Paranjpe, J. McVittie, and S. A. Self, \"Numeri cal Simulation of 13.56 MHz Symmetric Parallel  Plate RF Glow Discharges in Argon,\" Proc. 41st  Gas. Elec. Conf, Oct., 1988."}
+
+{"page": 6, "text": "[7] G. May, J. Huang, and C. Spanos, \"Statistical  Experimental Design in Plasma Etch Modeling,\"  IEEE Trans. Semi. Manufac., vol. 4, no. 2, May,  1991."}
+
+{"page": 6, "text": "[8] M. Jenkins, M. Mocella, K. Allen, and H. Sawin,  \"The Modeling of Plasma Etching Processes Using  Response Surface Methodology,\" Sol. St. Tech.,  Apr., 1986."}
+
+{"page": 6, "text": "[9] K. Lin and C. Spanos, \"Statistical Equipment  Modeling for VLSI Manufacturing: An Application  for LPCVD,\" IEEE Trans. Semi. Manufac., vol. 3,  no. 4, Nov., 1990."}
+
+{"page": 6, "text": "[lo] G. Box and N. Draper, Empirical Model-Building  and Response Sulfaces, New York: Wiley, 1987."}
+
+{"page": 6, "text": "[ 1 11 Brainmaker Neural Network Simulation Software  User's Guide and Reference Manual, California  Scientific Software, 1990."}
+
+{"page": 6, "text": "[12] G. Box, W. Hunter, and J. Hunter, Statistics for  Experimenters, New York: Wiley, 1978."}
+
+{"page": 6, "text": "[13] R. Hocking, \"The Analysis and Selection of Vari ables in Linear Regression,\" Biometrics, vol. 32,  March, 1976."}
+
+{"page": 6, "text": "[14] S. Rangwala and D. Domfeld, \"Learning ,and  Optimization of Machine Operations Using Com puting Abilities of Neural Networks,\" ZEEE  Trans. Sys. Man Cybern., Mar., 1989."}
+
+{"page": 6, "text": "1151 R. Lippman,, \"An Introduction to Computing with  Neural Nets,\" IEEE ASSP Mag., Apr., 1987."}
+
+{"page": 6, "text": "[ 161 F. Nadi, \"Modeling Complex Manufacturing  Processes Via Integration of Influence Diagrams  and Neural Networks,\" UC-Berkeley ERL Memo.  No. UCBIERL. M891123, Nov., 1989."}
+
+{"page": 6, "text": "[17] J. Freeman and D. Skapura, Neural Networks,  New York: Addison-Wesley, 1991."}
+
+{"page": 6, "text": "129  1992 IEEElSEMl Int'l Semiconductor Manufacturing Science Symposium"}
+
